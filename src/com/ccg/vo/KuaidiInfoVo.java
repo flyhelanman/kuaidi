@@ -5,6 +5,7 @@ public class KuaidiInfoVo {
 	private String time;
 	private String context;
 	private String ftime;
+	private String location;
 	
 	public String getTime() {
 		return time;
@@ -24,5 +25,10 @@ public class KuaidiInfoVo {
 	public void setFtime(String ftime) {
 		this.ftime = ftime;
 	}
-	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

@@ -11,6 +11,8 @@ public class KuaidiInfo {
 	private String status;
 	private String condition;
 	private String state;
+	private String updatetime;
+	
 	private List<KuaidiInfoVo>data;
 	
 	public String getMessage() {
@@ -61,6 +63,10 @@ public class KuaidiInfo {
 	public void setData(List<KuaidiInfoVo> data) {
 		this.data = data;
 	}
-	
-	
+	public String getUpdatetime() {
+		return updatetime;
+	}
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
 }

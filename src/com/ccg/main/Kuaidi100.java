@@ -24,6 +24,8 @@ public class Kuaidi100 {
 	private JTextField yundanField;
 	private JLabel label;
 	private JTextArea resultArea;
+	private JLabel updateTimeLable;
+	private JLabel updateTime;
 	/**
 	 * Launch the application.
 	 */
@@ -58,16 +60,16 @@ public class Kuaidi100 {
 		frmBy.getContentPane().setLayout(null);
 		
 		yundanField = new JTextField();
-		yundanField.setBounds(191, 37, 246, 34);
+		yundanField.setBounds(178, 37, 246, 34);
 		frmBy.getContentPane().add(yundanField);
 		yundanField.setColumns(10);
 		
 		JButton searchButton = new JButton("查询");
-		searchButton.setBounds(469, 42, 65, 23);
+		searchButton.setBounds(456, 42, 65, 23);
 		frmBy.getContentPane().add(searchButton);
 		
 		JLabel yundanLabel = new JLabel("运单号");
-		yundanLabel.setBounds(116, 46, 54, 15);
+		yundanLabel.setBounds(103, 46, 54, 15);
 		frmBy.getContentPane().add(yundanLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -78,12 +80,20 @@ public class Kuaidi100 {
 		scrollPane.setViewportView(resultArea);
 		
 		JLabel yundanTypeLable = new JLabel("运单类型");
-		yundanTypeLable.setBounds(248, 81, 54, 15);
+		yundanTypeLable.setBounds(178, 81, 54, 15);
 		frmBy.getContentPane().add(yundanTypeLable);
 		
 		label = new JLabel("");
-		label.setBounds(312, 81, 125, 15);
+		label.setBounds(242, 81, 93, 15);
 		frmBy.getContentPane().add(label);
+		
+		updateTimeLable = new JLabel("更新时间");
+		updateTimeLable.setBounds(362, 81, 54, 15);
+		frmBy.getContentPane().add(updateTimeLable);
+		
+		updateTime = new JLabel("");
+		updateTime.setBounds(444, 81, 150, 15);
+		frmBy.getContentPane().add(updateTime);
 		
 		//点击查询触发事件
 		searchButton.addActionListener(new ActionListener() {
@@ -109,6 +119,9 @@ public class Kuaidi100 {
 					String type = res.getAuto().get(0).getComCode(); //运单来源
 					label.setText(type);
 					KuaidiInfo kuaidiInfo = Kuaidi100Util.getKuaidiInfo(type, postId);
+					if(!"".equals(kuaidiInfo.getUpdatetime())){
+						updateTime.setText(kuaidiInfo.getUpdatetime());
+					}
 					List<KuaidiInfoVo> infoList = kuaidiInfo.getData();
 					if(infoList == null){
 						resultArea.setText("");
@@ -121,6 +134,7 @@ public class Kuaidi100 {
 						resultArea.append(temp.getTime()+"----"+temp.getContext());
 						resultArea.append("\n");
 					}
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
