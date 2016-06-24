@@ -12,7 +12,15 @@ public class KuaidiInfo {
 	private String condition;
 	private String state;
 	private String updatetime;
+	private String companytype;
+	private String codenumber;
 	
+	public String getCodenumber() {
+		return codenumber;
+	}
+	public void setCodenumber(String codenumber) {
+		this.codenumber = codenumber;
+	}
 	private List<KuaidiInfoVo>data;
 	
 	public String getMessage() {
@@ -68,5 +76,11 @@ public class KuaidiInfo {
 	}
 	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
+	}
+	public String getCompanytype() {
+		return companytype;
+	}
+	public void setCompanytype(String companytype) {
+		this.companytype = companytype;
 	}
 }

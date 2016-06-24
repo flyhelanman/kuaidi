@@ -54,7 +54,7 @@ public class Kuaidi100 {
 	 */
 	private void initialize() {
 		frmBy = new JFrame();
-		frmBy.setTitle("by:·ÉÏèµÄºÉÀ¼ÈË");
+		frmBy.setTitle("by:é£ç¿”çš„è·å…°äºº");
 		frmBy.setBounds(100, 100, 677, 465);
 		frmBy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmBy.getContentPane().setLayout(null);
@@ -64,11 +64,11 @@ public class Kuaidi100 {
 		frmBy.getContentPane().add(yundanField);
 		yundanField.setColumns(10);
 		
-		JButton searchButton = new JButton("²éÑ¯");
+		JButton searchButton = new JButton("æŸ¥è¯¢");
 		searchButton.setBounds(456, 42, 65, 23);
 		frmBy.getContentPane().add(searchButton);
 		
-		JLabel yundanLabel = new JLabel("ÔËµ¥ºÅ");
+		JLabel yundanLabel = new JLabel("è¿å•å·");
 		yundanLabel.setBounds(103, 46, 54, 15);
 		frmBy.getContentPane().add(yundanLabel);
 		
@@ -79,7 +79,7 @@ public class Kuaidi100 {
 		resultArea = new JTextArea();
 		scrollPane.setViewportView(resultArea);
 		
-		JLabel yundanTypeLable = new JLabel("ÔËµ¥ÀàĞÍ");
+		JLabel yundanTypeLable = new JLabel("è¿å•ç±»å‹");
 		yundanTypeLable.setBounds(178, 81, 54, 15);
 		frmBy.getContentPane().add(yundanTypeLable);
 		
@@ -87,7 +87,7 @@ public class Kuaidi100 {
 		label.setBounds(242, 81, 93, 15);
 		frmBy.getContentPane().add(label);
 		
-		updateTimeLable = new JLabel("¸üĞÂÊ±¼ä");
+		updateTimeLable = new JLabel("æ›´æ–°æ—¶é—´");
 		updateTimeLable.setBounds(362, 81, 54, 15);
 		frmBy.getContentPane().add(updateTimeLable);
 		
@@ -95,7 +95,7 @@ public class Kuaidi100 {
 		updateTime.setBounds(444, 81, 150, 15);
 		frmBy.getContentPane().add(updateTime);
 		
-		//µã»÷²éÑ¯´¥·¢ÊÂ¼ş
+		//ç‚¹å‡»æŸ¥è¯¢è§¦å‘äº‹ä»¶
 		searchButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -104,7 +104,7 @@ public class Kuaidi100 {
 				String postId = yundanField.getText();
 				if("".equals(postId) || postId == null){
 					resultArea.setText("");
-					resultArea.setText("ÇëÊäÈëÔËµ¥ºÅ£¡");
+					resultArea.setText("è¯·è¾“å…¥è¿å•å·ï¼");
 					return;
 				}
 				KuaidiSource res = null;
@@ -112,11 +112,11 @@ public class Kuaidi100 {
 					res = Kuaidi100Util.getKuaidiSource(postId);
 					if(res.getAuto() == null || res.getAuto().size() == 0){
 						resultArea.setText("");
-						resultArea.setText("Ã»ÓĞÔËµ¥ĞÅÏ¢£¡");
+						resultArea.setText("æ²¡æœ‰è¿å•ä¿¡æ¯ï¼");
 						label.setText("");
 						return;
 					}
-					String type = res.getAuto().get(0).getComCode(); //ÔËµ¥À´Ô´
+					String type = res.getAuto().get(0).getComCode(); //è¿å•æ¥æº
 					label.setText(type);
 					KuaidiInfo kuaidiInfo = Kuaidi100Util.getKuaidiInfo(type, postId);
 					if(!"".equals(kuaidiInfo.getUpdatetime())){
@@ -125,7 +125,7 @@ public class Kuaidi100 {
 					List<KuaidiInfoVo> infoList = kuaidiInfo.getData();
 					if(infoList == null){
 						resultArea.setText("");
-						resultArea.setText("Ã»ÓĞÔËµ¥ĞÅÏ¢£¡");
+						resultArea.setText("æ²¡æœ‰è¿å•ä¿¡æ¯ï¼");
 						label.setText("");
 						return;
 					}

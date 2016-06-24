@@ -13,9 +13,9 @@ import com.ccg.vo.KuaidiSource;
 public class Kuaidi100Util {
 	
 	/**
-	 * Ö±½Ó»ñÈ¡µ¥ºÅÀ´Ô´ÊµÌå
-	 * @author CCG 2016Äê6ÔÂ16ÈÕ
-	 * @param text µ¥ºÅ
+	 * ç›´æ¥è·å–å•å·æ¥æºå®ä½“
+	 * @author CCG 2016å¹´6æœˆ16æ—¥
+	 * @param text å•å·
 	 * @return
 	 * @throws IOException 
 	 * @throws JsonMappingException 
@@ -30,11 +30,11 @@ public class Kuaidi100Util {
 	}  
 	
 	/**
-	 * »ñÈ¡ÔËµ¥ĞÅÏ¢
-	 * @author CCG 2016Äê6ÔÂ16ÈÕ
+	 * è·å–è¿å•ä¿¡æ¯
+	 * @author CCG 2016å¹´6æœˆ16æ—¥
 	 * @param type
 	 * @param postId
-	 * @return ÔËµ¥¶ÔÏó
+	 * @return è¿å•å¯¹è±¡
 	 * @throws IOException 
 	 * @throws JsonMappingException 
 	 * @throws JsonParseException 
