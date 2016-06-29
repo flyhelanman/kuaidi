@@ -27,6 +27,7 @@ public class Kuaidi100 {
 	private JTextArea resultArea;
 	private JLabel updateTimeLable;
 	private JLabel updateTime;
+	private JTextField remarkField;
 	/**
 	 * Launch the application.
 	 */
@@ -56,48 +57,48 @@ public class Kuaidi100 {
 	private void initialize() {
 		frmBy = new JFrame();
 		frmBy.setTitle("by:飞翔的荷兰人");
-		frmBy.setBounds(100, 100, 699, 465);
+		frmBy.setBounds(100, 100, 826, 465);
 		frmBy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmBy.getContentPane().setLayout(null);
 		
 		yundanField = new JTextField();
-		yundanField.setBounds(264, 42, 246, 34);
+		yundanField.setBounds(395, 43, 246, 34);
 		frmBy.getContentPane().add(yundanField);
 		yundanField.setColumns(10);
 		
 		JButton searchButton = new JButton("查询");
-		searchButton.setBounds(542, 47, 65, 23);
+		searchButton.setBounds(673, 43, 65, 34);
 		frmBy.getContentPane().add(searchButton);
 		
 		JLabel yundanLabel = new JLabel("运单号");
-		yundanLabel.setBounds(189, 51, 54, 15);
+		yundanLabel.setBounds(320, 52, 54, 15);
 		frmBy.getContentPane().add(yundanLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(148, 111, 532, 279);
+		scrollPane.setBounds(255, 112, 545, 279);
 		frmBy.getContentPane().add(scrollPane);
 		
 		resultArea = new JTextArea();
 		scrollPane.setViewportView(resultArea);
 		
 		JLabel yundanTypeLable = new JLabel("运单类型");
-		yundanTypeLable.setBounds(264, 86, 54, 15);
+		yundanTypeLable.setBounds(395, 87, 54, 15);
 		frmBy.getContentPane().add(yundanTypeLable);
 		
 		label = new JLabel("");
-		label.setBounds(328, 86, 93, 15);
+		label.setBounds(459, 87, 93, 15);
 		frmBy.getContentPane().add(label);
 		
 		updateTimeLable = new JLabel("更新时间");
-		updateTimeLable.setBounds(448, 86, 54, 15);
+		updateTimeLable.setBounds(579, 87, 54, 15);
 		frmBy.getContentPane().add(updateTimeLable);
 		
 		updateTime = new JLabel("");
-		updateTime.setBounds(530, 86, 150, 15);
+		updateTime.setBounds(595, 87, 150, 15);
 		frmBy.getContentPane().add(updateTime);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 112, 125, 279);
+		scrollPane_1.setBounds(10, 112, 235, 279);
 		frmBy.getContentPane().add(scrollPane_1);
 		
 		final JTextArea textAreaLog = new JTextArea();
@@ -110,6 +111,18 @@ public class Kuaidi100 {
 		//获取指定目录下内容
 		String oldContent = FileUtil.readTxtFile(filePath, "utf-8");
 		textAreaLog.setText(oldContent);
+		JLabel lblNewLabel = new JLabel("查询记录");
+		lblNewLabel.setBounds(78, 87, 93, 15);
+		frmBy.getContentPane().add(lblNewLabel);
+		
+		remarkField = new JTextField();
+		remarkField.setBounds(10, 43, 98, 34);
+		frmBy.getContentPane().add(remarkField);
+		remarkField.setColumns(10);
+		
+		JButton addRemarkButton = new JButton("添加备注保存");
+		addRemarkButton.setBounds(118, 43, 127, 34);
+		frmBy.getContentPane().add(addRemarkButton);
 		
 		//点击查询触发事件
 		searchButton.addActionListener(new ActionListener() {
@@ -150,10 +163,7 @@ public class Kuaidi100 {
 						resultArea.append(temp.getTime()+"----"+temp.getContext());
 						resultArea.append("\n");
 					}
-					//查询有记录则保存查询记录到txt ---- postId
-					FileUtil.addTxt(filePath, postId, "utf-8");
-					textAreaLog.append(postId);
-					textAreaLog.append("\n");
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -161,5 +171,28 @@ public class Kuaidi100 {
 			}
 		});
 		
+		//点击添加备注按钮触发事件
+		addRemarkButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String postId = yundanField.getText().trim();
+				String remark = remarkField.getText().trim();  //备注信息
+				String temp = FileUtil.readTxtFile(filePath, "utf-8");
+				if(!temp.contains(postId)){
+					//查询有记录则保存查询记录到txt ---- postId
+					try {
+						FileUtil.addTxt(filePath, postId+"----"+remark, "utf-8");
+						temp = FileUtil.readTxtFile(filePath, "utf-8");
+						textAreaLog.setText(temp);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 	}
 }
+ 
