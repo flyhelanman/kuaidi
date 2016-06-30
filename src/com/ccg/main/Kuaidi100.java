@@ -178,6 +178,12 @@ public class Kuaidi100 {
 				// TODO Auto-generated method stub
 				String postId = yundanField.getText().trim();
 				String remark = remarkField.getText().trim();  //备注信息
+				if(postId == null || "".equals(postId)){
+					resultArea.setText("");
+					resultArea.setText("运单号为空！不能添加备注信息！");
+					return;
+				}
+				
 				String temp = FileUtil.readTxtFile(filePath, "utf-8");
 				if(!temp.contains(postId)){
 					//查询有记录则保存查询记录到txt ---- postId
