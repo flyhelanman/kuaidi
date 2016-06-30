@@ -66,8 +66,8 @@ public class Kuaidi100 {
 		frmBy.getContentPane().add(yundanField);
 		yundanField.setColumns(10);
 		
-		JButton searchButton = new JButton("查询");
-		searchButton.setBounds(673, 43, 65, 34);
+		JButton searchButton = new JButton("查询物流");
+		searchButton.setBounds(651, 43, 104, 34);
 		frmBy.getContentPane().add(searchButton);
 		
 		JLabel yundanLabel = new JLabel("运单号");
