@@ -105,11 +105,12 @@ public class Kuaidi100 {
 		scrollPane_1.setViewportView(textAreaLog);
 		
 		final String filePath = "d:/kuaidiLog.txt";
+		final String charset = "gbk";
 		//创建记录查询日志文件
 		FileUtil.createFile(filePath);
 		
 		//获取指定目录下内容
-		String oldContent = FileUtil.readTxtFile(filePath, "utf-8");
+		String oldContent = FileUtil.readTxtFile(filePath,charset );
 		textAreaLog.setText(oldContent);
 		JLabel lblNewLabel = new JLabel("查询记录");
 		lblNewLabel.setBounds(78, 87, 93, 15);
@@ -184,12 +185,12 @@ public class Kuaidi100 {
 					return;
 				}
 				
-				String temp = FileUtil.readTxtFile(filePath, "utf-8");
+				String temp = FileUtil.readTxtFile(filePath, charset);
 				if(!temp.contains(postId)){
 					//查询有记录则保存查询记录到txt ---- postId
 					try {
-						FileUtil.addTxt(filePath, postId+"----"+remark, "utf-8");
-						temp = FileUtil.readTxtFile(filePath, "utf-8");
+						FileUtil.addTxt(filePath, postId+"----"+remark, charset);
+						temp = FileUtil.readTxtFile(filePath, charset);
 						textAreaLog.setText(temp);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
@@ -203,8 +204,8 @@ public class Kuaidi100 {
 						}
 					}
 					try {
-						FileUtil.replaceTxt(filePath, temp, "utf-8");
-						temp = FileUtil.readTxtFile(filePath, "utf-8");
+						FileUtil.replaceTxt(filePath, temp, charset);
+						temp = FileUtil.readTxtFile(filePath, charset);
 						textAreaLog.setText(temp);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
