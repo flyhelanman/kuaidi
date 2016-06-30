@@ -3,6 +3,7 @@ package com.ccg.util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -153,5 +154,19 @@ public class FileUtil {
 		 FileOutputStream fos = new FileOutputStream(file,false);//false表示覆盖
 		 fos.write(addStr.getBytes());  
 		 fos.close();//流要及时关闭 
+	 }
+	 
+	 /**
+	  * 替换原来内容
+	  * @author CCG 2016年6月30日
+	  * @param file
+	  * @param replaceStr
+	  * @param charset
+	  * @throws IOException
+	  */
+	 public static void replaceTxt(String file,String replaceStr,String charset) throws IOException{
+		 FileOutputStream fos = new FileOutputStream(file,false);//false表示覆盖
+		 fos.write(replaceStr.getBytes());  
+		 fos.close();//流要及时关闭  
 	 }
 }

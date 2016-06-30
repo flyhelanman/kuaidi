@@ -163,7 +163,6 @@ public class Kuaidi100 {
 						resultArea.append(temp.getTime()+"----"+temp.getContext());
 						resultArea.append("\n");
 					}
-					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -184,6 +183,21 @@ public class Kuaidi100 {
 					//查询有记录则保存查询记录到txt ---- postId
 					try {
 						FileUtil.addTxt(filePath, postId+"----"+remark, "utf-8");
+						temp = FileUtil.readTxtFile(filePath, "utf-8");
+						textAreaLog.setText(temp);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else{  //已经存在的运单号再次保存则更新备注信息
+					String oldTxtArray [] = temp.replaceAll("\r\n", ",").split(",");  
+					for(String tempTxt : oldTxtArray){
+						if(tempTxt.contains(postId)){ //删除之前的记录
+							temp = temp.replaceAll(tempTxt, postId+"----"+remark);
+						}
+					}
+					try {
+						FileUtil.replaceTxt(filePath, temp, "utf-8");
 						temp = FileUtil.readTxtFile(filePath, "utf-8");
 						textAreaLog.setText(temp);
 					} catch (IOException e1) {
