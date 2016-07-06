@@ -14,6 +14,12 @@ public class KuaidiInfo {
 	private String updatetime;
 	private String companytype;
 	private String codenumber;
+	private String signname;
+	private String signedtime;
+	private String departure;
+	private String addressee;
+	private String destination;
+	private String pickuptime;
 	
 	public String getCodenumber() {
 		return codenumber;
@@ -82,5 +88,41 @@ public class KuaidiInfo {
 	}
 	public void setCompanytype(String companytype) {
 		this.companytype = companytype;
+	}
+	public String getSignname() {
+		return signname;
+	}
+	public void setSignname(String signname) {
+		this.signname = signname;
+	}
+	public String getSignedtime() {
+		return signedtime;
+	}
+	public void setSignedtime(String signedtime) {
+		this.signedtime = signedtime;
+	}
+	public String getDeparture() {
+		return departure;
+	}
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
+	public String getAddressee() {
+		return addressee;
+	}
+	public void setAddressee(String addressee) {
+		this.addressee = addressee;
+	}
+	public String getDestination() {
+		return destination;
+	}
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+	public String getPickuptime() {
+		return pickuptime;
+	}
+	public void setPickuptime(String pickuptime) {
+		this.pickuptime = pickuptime;
 	}
 }
