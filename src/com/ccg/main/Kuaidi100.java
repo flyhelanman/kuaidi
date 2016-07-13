@@ -116,6 +116,15 @@ public class Kuaidi100 {
 		lblNewLabel.setBounds(78, 87, 93, 15);
 		frmBy.getContentPane().add(lblNewLabel);
 		
+		if(oldContent != null && !"".equals(oldContent)){
+			//获取第一行初始化查询第一行数据
+			String[] tempArray = oldContent.split("\r\n");
+			String firstLine = tempArray[0];
+			String postId = firstLine.split("----")[0];
+			yundanField.setText(postId);
+			clickOkButton();
+		}
+		
 		remarkField = new JTextField();
 		remarkField.setBounds(10, 43, 98, 34);
 		frmBy.getContentPane().add(remarkField);
@@ -131,43 +140,7 @@ public class Kuaidi100 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String postId = yundanField.getText().trim();
-				if("".equals(postId) || postId == null){
-					resultArea.setText("");
-					resultArea.setText("请输入运单号！");
-					return;
-				}
-				KuaidiSource res = null;
-				try {
-					res = Kuaidi100Util.getKuaidiSource(postId);
-					if(res.getAuto() == null || res.getAuto().size() == 0){
-						resultArea.setText("");
-						resultArea.setText("没有运单信息！");
-						label.setText("");
-						return;
-					}
-					String type = res.getAuto().get(0).getComCode(); //运单来源
-					label.setText(type);
-					KuaidiInfo kuaidiInfo = Kuaidi100Util.getKuaidiInfo(type, postId);
-					if(!"".equals(kuaidiInfo.getUpdatetime())){
-						updateTime.setText(kuaidiInfo.getUpdatetime());
-					}
-					List<KuaidiInfoVo> infoList = kuaidiInfo.getData();
-					if(infoList == null){
-						resultArea.setText("");
-						resultArea.setText("没有运单信息！");
-						label.setText("");
-						return;
-					}
-					resultArea.setText("");
-					for(KuaidiInfoVo temp : infoList){
-						resultArea.append(temp.getTime()+"----"+temp.getContext());
-						resultArea.append("\n");
-					}
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				clickOkButton();
 			}
 		});
 		
@@ -214,6 +187,45 @@ public class Kuaidi100 {
 				}
 			}
 		});
+	}
+	private void clickOkButton(){
+		String postId = yundanField.getText().trim();
+		if("".equals(postId) || postId == null){
+			resultArea.setText("");
+			resultArea.setText("请输入运单号！");
+			return;
+		}
+		KuaidiSource res = null;
+		try {
+			res = Kuaidi100Util.getKuaidiSource(postId);
+			if(res.getAuto() == null || res.getAuto().size() == 0){
+				resultArea.setText("");
+				resultArea.setText("没有运单信息！");
+				label.setText("");
+				return;
+			}
+			String type = res.getAuto().get(0).getComCode(); //运单来源
+			label.setText(type);
+			KuaidiInfo kuaidiInfo = Kuaidi100Util.getKuaidiInfo(type, postId);
+			if(!"".equals(kuaidiInfo.getUpdatetime())){
+				updateTime.setText(kuaidiInfo.getUpdatetime());
+			}
+			List<KuaidiInfoVo> infoList = kuaidiInfo.getData();
+			if(infoList == null){
+				resultArea.setText("");
+				resultArea.setText("没有运单信息！");
+				label.setText("");
+				return;
+			}
+			resultArea.setText("");
+			for(KuaidiInfoVo temp : infoList){
+				resultArea.append(temp.getTime()+"----"+temp.getContext());
+				resultArea.append("\n");
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
  

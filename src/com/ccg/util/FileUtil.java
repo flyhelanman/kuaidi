@@ -169,4 +169,22 @@ public class FileUtil {
 		 fos.write(replaceStr.getBytes());  
 		 fos.close();//流要及时关闭  
 	 }
+	 
+	 /**
+	  * 读取指定行数数据
+	  * @author CCG 2016年7月13日
+	  * @param lineNumber
+	  * @param reader
+	  * @return
+	  * @throws IOException
+	  */
+	 public static String readXLineText(int lineNumber,BufferedReader reader) throws IOException{
+		 String line = "";
+		 int i = 0;
+		 while(i < lineNumber){
+			 line = reader.readLine();
+			 i++;
+		 }
+		 return line;
+	 }
 }
